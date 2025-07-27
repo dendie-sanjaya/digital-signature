@@ -33,7 +33,7 @@ Here's how it works conceptually:
 * **Computation Process:** The hash algorithm then performs a series of complex mathematical operations (e.g., bit rotations, XOR, modular addition, compression) on these bytes. Every byte influences the subsequent calculation.
 * **Hash Output:** The final result is a fixed-length hexadecimal string, which is the unique "digital fingerprint" of the original file's byte sequence. If even a single byte in the file changes, the resulting hash will be drastically different.
 
----
+
 
 ## 2. Concept of Digital Signature
 
@@ -45,7 +45,7 @@ Digital signatures work by using an asymmetric key pair:
 * **Private Key:** Known only to the owner, used to "sign" the document's hash.
 * **Public Key:** Can be shared widely with anyone, used to "verify" the signature created with its corresponding private key.
 
----
+
 
 ## 3. Workflow for Creating & Verifying Digital Signatures
 
@@ -70,7 +70,7 @@ How are documents signed and verified in this system? Let's look at the workflow
 4.  **Hash Recalculation:** The verification system recalculates the hash of the downloaded document.
 5.  **Cryptographic Verification:** The public key obtained from the API is used to verify the digital signature against the newly calculated document hash. If they match, the document is valid and has not been altered.
 
----
+
 
 ## 4. Digital Signature Service Architecture
 
