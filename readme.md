@@ -77,7 +77,7 @@ How are documents signed and verified in this system? Let's look at the workflow
 
 This service is designed with a modular architecture to separate responsibilities and facilitate development.
 
-![](design/achiteture.jpg)
+![](design/arsitecture.jpg)
 
 **Key Components:**
 
