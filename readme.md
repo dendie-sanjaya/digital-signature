@@ -24,7 +24,7 @@ In the vast ocean of digital information and transactions, how can we be sure th
 
 Before understanding digital signatures, let's first grasp the "digital fingerprint" of a file: **File Hash**.
 
-![](ss/konsep-digital-signature.jpg)
+![](design/konsep-hash.jpg)
 
 Here's how it works conceptually:
 
@@ -33,13 +33,13 @@ Here's how it works conceptually:
 * **Computation Process:** The hash algorithm then performs a series of complex mathematical operations (e.g., bit rotations, XOR, modular addition, compression) on these bytes. Every byte influences the subsequent calculation.
 * **Hash Output:** The final result is a fixed-length hexadecimal string, which is the unique "digital fingerprint" of the original file's byte sequence. If even a single byte in the file changes, the resulting hash will be drastically different.
 
-
+![](ss/ss-hashsfile.jpg)
 
 ## 2. Concept of Digital Signature
 
 A digital signature is a cryptographic mechanism that provides two main assurances: **integrity** (the document has not been altered) and **authenticity** (the document genuinely comes from the legitimate signer). It's like a wet-ink signature, but with much greater mathematical power.
 
-![](ss/konsep-digital-signature.jpg)
+![](design/konsep-digital-signature.jpg)
 
 Digital signatures work by using an asymmetric key pair:
 * **Private Key:** Known only to the owner, used to "sign" the document's hash.
@@ -51,9 +51,7 @@ Digital signatures work by using an asymmetric key pair:
 
 How are documents signed and verified in this system? Let's look at the workflow:
 
-![](ss/konsep-digital-signature.jpg)
-
-![](ss/workflow-create-digital-signature.jpg)
+![](design/workflow-create-digital-signature.jpg)
 
 **Signature Creation Workflow:**
 1.  **Document Upload:** The user uploads a document to the service.
@@ -62,6 +60,9 @@ How are documents signed and verified in this system? Let's look at the workflow
 4.  **Document Signing:** This document hash is then signed using the user's private key. The result is the digital signature.
 5.  **Information Storage:** The original document is saved in the server's storage (with a unique name), and all related information (original filename, unique filename, document hash, signer's public key, digital signature, user ID, publisher name) is stored in the database.
 6.  **QR Code:** A QR code is generated containing a direct link to the digital signature information of that document.
+
+
+![](design/workflow-verification-hash-file.jpg)
 
 **Signature Verification Workflow:**
 1.  **QR Code Scan:** The party wishing to verify scans the QR code on the document.
@@ -76,7 +77,7 @@ How are documents signed and verified in this system? Let's look at the workflow
 
 This service is designed with a modular architecture to separate responsibilities and facilitate development.
 
-![](ss/achiteture.jpg)
+![](design/achiteture.jpg)
 
 **Key Components:**
 
@@ -160,6 +161,8 @@ After all dependencies are installed, you can run the Flask application:
 python app.py
 ```
 
+![](ss/running-app.jpg)
+
 The application will run at `http://127.0.0.1:5000/` (or `http://localhost:5000/`).
 
 ### API Usage with Postman (or Similar Tools)
@@ -167,6 +170,8 @@ The application will run at `http://127.0.0.1:5000/` (or `http://localhost:5000/
 You can interact with the API using Postman, Insomnia, or `curl`.
 
 #### 1\. Upload and Sign Document
+
+![](ss/postmant-1.jpg)
 
   * **Endpoint:** `POST http://localhost:5000/upload_and_sign`
   * **Body:** `form-data`
@@ -176,12 +181,16 @@ You can interact with the API using Postman, Insomnia, or `curl`.
 
 #### 2\. Get Document QR Code
 
+![](ss/postmant-2.jpg)
+
   * **Endpoint:** `GET http://localhost:5000/get_qrcode/<document_id>`
   * Replace `<document_id>` with the document ID you obtained from the `upload_and_sign` response.
 
 The response will contain a Base64 encoded QR code image that you can decode and display. This QR code, when scanned, will direct to the `/get_signature_info` endpoint for that document.
 
 #### 3\. Get Digital Signature Information
+
+![](ss/postmant-3.jpg)
 
   * **Endpoint:** `GET http://localhost:5000/get_signature_info`
   * **Params:**
@@ -192,10 +201,9 @@ The response will display all digital signature details, including verification 
 
 #### 4\. Download Original Document
 
+![](ss/postmant-4.jpg)
+
   * **Endpoint:** `GET http://localhost:5000/download_original_file/<document_id>`
   * Replace `<document_id>` with the document ID you obtained from the `upload_and_sign` response.
 
 This will download the original file stored on the server. You can calculate the hash of this downloaded file locally and compare it with the `document_hash_stored` obtained from the `/get_signature_info` API for manual verification.
-
-```
-```
