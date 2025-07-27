@@ -1,16 +1,24 @@
-````markdown
+
 # Digital Signature Service: Ensuring Document Integrity in the Digital Age
 
 In the vast ocean of digital information and transactions, how can we be sure that a document we receive is authentic, hasn't been tampered with, and truly comes from the source we expect? This is the crucial question answered by **Digital Signatures**. Imagine a world where every important document has a unique, unforgeable "digital fingerprint," ensuring its authenticity and integrity. This project is our step towards that world.
 
 ## Table of Contents
-1.  [Concept of File Hash](#1-concept-of-file-hash)
-2.  [Concept of Digital Signature](#2-concept-of-digital-signature)
-3.  [Workflow for Creating & Verifying Digital Signatures](#3-workflow-for-creating--verifying-digital-signatures)
-4.  [Digital Signature Service Architecture](#4-digital-signature-service-architecture)
-5.  [Installation and Usage Guide](#5-installation-and-usage-guide)
+- [Digital Signature Service: Ensuring Document Integrity in the Digital Age](#digital-signature-service-ensuring-document-integrity-in-the-digital-age)
+  - [Table of Contents](#table-of-contents)
+  - [1. Concept of File Hash](#1-concept-of-file-hash)
+  - [2. Concept of Digital Signature](#2-concept-of-digital-signature)
+  - [3. Workflow for Creating \& Verifying Digital Signatures](#3-workflow-for-creating--verifying-digital-signatures)
+  - [4. Digital Signature Service Architecture](#4-digital-signature-service-architecture)
+  - [5. Installation and Usage Guide](#5-installation-and-usage-guide)
+    - [Install Dependencies](#install-dependencies)
+    - [Running the Application](#running-the-application)
+    - [API Usage with Postman (or Similar Tools)](#api-usage-with-postman-or-similar-tools)
+      - [1. Upload and Sign Document](#1-upload-and-sign-document)
+      - [2. Get Document QR Code](#2-get-document-qr-code)
+      - [3. Get Digital Signature Information](#3-get-digital-signature-information)
+      - [4. Download Original Document](#4-download-original-document)
 
----
 
 ## 1. Concept of File Hash
 
